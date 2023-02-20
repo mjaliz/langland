@@ -1,7 +1,17 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ChooseLanguage from "./screens/ChooseLanguage";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <ChooseLanguage />,
+  },
+]);
+
 function App() {
   return (
     <div>
-      <h1>App</h1>
+      <RouterProvider router={router} />
     </div>
   );
 }
