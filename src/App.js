@@ -1,20 +1,23 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ChooseLanguage from "./screens/ChooseLanguage";
+
+import ChooseLanguageScreen from "./screens/ChooseLanguageScreen";
+import LanguagesListScreen from "./screens/LanguagesListScreen";
+
 import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <ChooseLanguage />,
+    element: <ChooseLanguageScreen />,
+  },
+  {
+    path: "/languages_list",
+    element: <LanguagesListScreen />,
   },
 ]);
 
 function App() {
-  return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
