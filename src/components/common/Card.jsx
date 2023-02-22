@@ -1,8 +1,10 @@
 import React from "react";
 
-const Card = ({ image, text }) => {
+const Card = ({ image, text, classes }) => {
   return (
-    <div className="flex items-center px-3 bg-white h-20 w-full rounded-lg shadow-sm my-1 mx-auto">
+    <div
+      className={`flex items-center px-3 bg-white h-20 rounded-lg shadow-sm my-1 mx-auto ${classes}`}
+    >
       <img
         src={image}
         alt="country"

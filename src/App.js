@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import ChooseLanguageScreen from "./screens/ChooseLanguageScreen";
 import LanguagesListScreen from "./screens/LanguagesListScreen";
+import MotivationScreen from "./screens/MotivationScreen";
 
 import "./index.css";
 
@@ -11,8 +12,12 @@ const router = createBrowserRouter([
     element: <ChooseLanguageScreen />,
   },
   {
-    path: "/languages_list",
+    path: "/my_languages",
     element: <LanguagesListScreen />,
+  },
+  {
+    path: "/:language",
+    element: <MotivationScreen />,
   },
 ]);
 
