@@ -42,19 +42,16 @@ const MotivationScreen = () => {
       <p className="text-gray font-bold px-5 my-3">
         Learners with clear motivations are more likely to stay on track.
       </p>
-      <div>
-        {motivations.map((motivation) => (
-          <Link to="/past_experience" key={motivation.text}>
-            <Card
-              image={motivation.image}
-              text={motivation.text}
-              classes="w-[95%]"
-              onClick={() => handleClick(motivation.text)}
-            />
-          </Link>
-        ))}
-      </div>
-      <div className="mt-2"></div>
+      {motivations.map((motivation) => (
+        <Link to="/past_experience" key={motivation.text}>
+          <Card
+            image={motivation.image}
+            text={motivation.text}
+            classes="w-[95%]"
+            onClick={() => handleClick(motivation.text)}
+          />
+        </Link>
+      ))}
     </ColContainer>
   );
 };
