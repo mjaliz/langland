@@ -1,15 +1,22 @@
 import React from "react";
-import Card from "../components/common/Card";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { setTargetLanguage } from "../store/slice/signupInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import Header from "../components/common/Header";
+import Card from "../components/common/Card";
 
 import usFlag from "../icons/flags/us.svg";
 import deFlag from "../icons/flags/de.svg";
 import irFlag from "../icons/flags/ir.svg";
-import { Link } from "react-router-dom";
 
 const LanguagesListScreen = () => {
+  const dispatch = useDispatch();
+  const handleClick = (lang) => {
+    dispatch(setTargetLanguage(lang));
+  };
   return (
     <ColContainer classes="bg-gray-light justify-start">
       <Header />
@@ -20,7 +27,7 @@ const LanguagesListScreen = () => {
       <h1 className="mb-2 mt-6 mx-5 text-gray text-lg font-semibold">
         I WANT TO LEARN
       </h1>
-      <Link to="/american_english">
+      <Link to="/motivation" onClick={() => handleClick("American English")}>
         <Card image={usFlag} text="American English" classes="w-[95%]" />
       </Link>
       <Card image={deFlag} text="German" classes="w-[95%]" />

@@ -9,9 +9,10 @@ function extractHeader(pathname) {
 
 const Header = () => {
   const { pathname } = useLocation();
-  console.log(extractHeader(pathname));
   return (
-    <header className={`bg-white h-16 shadow-md flex items-center px-4`}>
+    <header
+      className={`bg-white min-h-[4rem] shadow-md flex items-center px-4`}
+    >
       <Link to="/">
         <ArrowLeft />
       </Link>

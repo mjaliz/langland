@@ -16,7 +16,7 @@ const ChooseLanguageScreen = () => {
         </p>
       </div>
       <div className="flex flex-col items-center mb-6">
-        <Link to="my_languages" className="w-full text-center">
+        <Link to="/my_languages" className="w-full text-center">
           <Button
             text="Choose a language"
             classes="text-white font-semibold bg-primary h-12 w-[80%] rounded-md shadow-lg"

@@ -29,7 +29,7 @@ const slice = createSlice({
   },
 });
 
-const {
+export const {
   setTargetLanguage,
   setMotivation,
   setPastExperience,
