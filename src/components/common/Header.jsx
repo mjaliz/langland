@@ -12,7 +12,7 @@ const Header = () => {
   const { pathname } = useLocation();
   return (
     <header
-      className={`bg-white min-h-[4rem] shadow-md flex items-center px-4 sticky top-0`}
+      className={`bg-white min-h-[4rem] shadow-md flex items-center px-4`}
     >
       <BackButton />
       <h1 className="ml-7 text-lg font-bold">{extractHeader(pathname)}</h1>

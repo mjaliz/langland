@@ -41,16 +41,19 @@ const MotivationScreen = () => {
       <p className="text-gray font-bold px-5 my-5">
         Learners with clear motivations are more likely to stay on track.
       </p>
-      {motivations.map((motivation) => (
-        <Link to="/past_experience" key={motivation.text}>
-          <Card
-            image={motivation.image}
-            text={motivation.text}
-            classes="w-[95%]"
-            onClick={() => handleClick(motivation.text)}
-          />
-        </Link>
-      ))}
+      <div className="overflow-y-scroll">
+        {motivations.map((motivation) => (
+          <Link to="/past_experience" key={motivation.text}>
+            <Card
+              image={motivation.image}
+              imgSize="w-11 h-11"
+              text={motivation.text}
+              classes="w-[95%] my-2"
+              onClick={() => handleClick(motivation.text)}
+            />
+          </Link>
+        ))}
+      </div>
     </ColContainer>
   );
 };

@@ -2,14 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
+import { setPastExperience } from "../store/slice/signupInfoSlice";
+
 import ColContainer from "../components/common/ColContainer";
 import Header from "../components/common/Header";
 import Card from "../components/common/Card";
 
+import barChart from "../icons/bar-chart.png";
+
 const pastExperiences = [
-  { image: "no much", text: "Not much" },
-  { image: "some", text: "Some" },
-  { image: "a lot", text: "A lot" },
+  { image: barChart, text: "Not much" },
+  { image: barChart, text: "Some" },
+  { image: barChart, text: "A lot" },
 ];
 
 const PastExperienceScreen = () => {
@@ -17,7 +21,7 @@ const PastExperienceScreen = () => {
   const { targetLanguage } = useSelector((state) => state.signupInfo);
 
   const handleClick = (pastExperience) => {
-    console.log(pastExperience);
+    dispatch(setPastExperience(pastExperience));
   };
   return (
     <ColContainer classes="bg-gray-light justify-start">
@@ -29,9 +33,10 @@ const PastExperienceScreen = () => {
         We'll help you find the right place to start.
       </p>
       {pastExperiences.map((pastExperience) => (
-        <Link to="/past_experience" key={pastExperience.text}>
+        <Link to="/time_goal" key={pastExperience.text}>
           <Card
             image={pastExperience.image}
+            imgSize="w-11 h-11"
             text={pastExperience.text}
             classes="w-[95%]"
             onClick={() => handleClick(pastExperience.text)}
