@@ -8,6 +8,7 @@ import TimeGoalScreen from "./screens/TimeGoalScreen";
 import AgeScreen from "./screens/AgeScreen";
 
 import "./index.css";
+import SignUpScreen from "./screens/SignUpScreen";
 
 const router = createBrowserRouter([
   {
@@ -34,10 +35,18 @@ const router = createBrowserRouter([
     path: "/age",
     element: <AgeScreen />,
   },
+  {
+    path: "/sign_up",
+    element: <SignUpScreen />,
+  },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <div className="bg-white">
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
 export default App;

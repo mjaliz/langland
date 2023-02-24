@@ -34,7 +34,7 @@ const AgeScreen = () => {
           <Card
             image={age.image}
             text={age.text}
-            classes="w-[95%] h-16"
+            classes="w-[95%] h-12"
             onClick={() => handleClick(age.text)}
           />
         </Link>
