@@ -6,6 +6,7 @@ import MotivationScreen from "./screens/MotivationScreen";
 import PastExperienceScreen from "./screens/PastExperienceScreen";
 import TimeGoalScreen from "./screens/TimeGoalScreen";
 import AgeScreen from "./screens/AgeScreen";
+import FirstNameScreen from "./screens/FirstNameScreen";
 
 import "./index.css";
 import SignUpScreen from "./screens/SignUpScreen";
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/sign_up",
     element: <SignUpScreen />,
+  },
+  {
+    path: "/sign_up/first_name",
+    element: <FirstNameScreen />,
   },
 ]);
 

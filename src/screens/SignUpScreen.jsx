@@ -15,10 +15,12 @@ const SignUpScreen = () => {
       <h1 className="text-center text-4xl font-bold mb-16">
         Sign up and start learning for free
       </h1>
-      <Button
-        text="Sign up with email"
-        classes="text-white font-semibold bg-primary w-[90%] h-12 rounded-md shadow-lg mx-auto"
-      />
+      <Link to="first_name" className="text-center">
+        <Button
+          text="Sign up with email"
+          classes="text-white font-semibold bg-primary w-[90%] h-12 rounded-md shadow-lg mx-auto"
+        />
+      </Link>
       <Button
         text="More sign up options"
         classes="font-semibold bg-white w-[90%] h-12 mx-auto rounded-md shadow-md ring-2 ring-gray mt-4"
