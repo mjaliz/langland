@@ -8,6 +8,7 @@ module.exports = {
       gray: { light: "#f5f5f5", DEFAULT: "#6b7280" },
       dark: "#94a3b8",
       primary: "#f97316",
+      inherit: "inherit",
     },
     extend: {},
   },
