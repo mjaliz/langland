@@ -9,6 +9,8 @@ const slice = createSlice({
     pastExperience: "Not much",
     timeGoal: 30,
     age: "18-24",
+    firstName: "",
+    email: "",
   },
   reducers: {
     setTargetLanguage: (signupInfo, action) => {
@@ -26,6 +28,12 @@ const slice = createSlice({
     setAge: (signupInfo, action) => {
       signupInfo.age = action.payload;
     },
+    setFirstName: (signupInfo, action) => {
+      signupInfo.firstName = action.payload;
+    },
+    setEmail: (signupInfo, action) => {
+      signupInfo.email = action.payload;
+    },
   },
 });
 
@@ -35,6 +43,8 @@ export const {
   setPastExperience,
   setTimeGoal,
   setAge,
+  setFirstName,
+  setEmail,
 } = slice.actions;
 
 export default slice.reducer;

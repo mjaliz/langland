@@ -16,15 +16,13 @@ const SignUpScreen = () => {
         Sign up and start learning for free
       </h1>
       <Link to="first_name" className="text-center">
-        <Button
-          text="Sign up with email"
-          classes="text-white font-semibold bg-primary w-[90%] h-12 rounded-md shadow-lg mx-auto"
-        />
+        <Button classes="text-white font-semibold bg-primary w-[90%] h-12 rounded-md shadow-lg mx-auto">
+          Sign up with email
+        </Button>
       </Link>
-      <Button
-        text="More sign up options"
-        classes="font-semibold bg-white w-[90%] h-12 mx-auto rounded-md shadow-md ring-2 ring-gray mt-4"
-      />
+      <Button classes="font-semibold bg-white w-[90%] h-12 mx-auto rounded-md shadow-md ring-2 ring-gray mt-4">
+        More sign up options
+      </Button>
       <p className="mt-8 text-md font-semibold mx-auto">
         Already a LangLand user?{" "}
         <Link to="signin" className="text-black font-bold underline">

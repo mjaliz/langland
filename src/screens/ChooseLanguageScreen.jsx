@@ -17,12 +17,11 @@ const ChooseLanguageScreen = () => {
       </div>
       <div className="flex flex-col items-center mb-6">
         <Link to="/my_languages" className="w-full text-center">
-          <Button
-            text="Choose a language"
-            classes="text-white font-semibold bg-primary h-12 w-[80%] rounded-md shadow-lg"
-          />
+          <Button classes="text-white font-semibold bg-primary h-12 w-[80%] rounded-md shadow-lg">
+            Choose a language
+          </Button>
         </Link>
-        <p className="mt-5 text-sm text-gray">
+        <p className="mt-7 text-sm text-gray">
           Already a LangLand user?{" "}
           <Link to="signin" className="text-black font-bold underline">
             Log in
