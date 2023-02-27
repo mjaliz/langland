@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { apiCallBegan } from "../actions/api";
 
 const slice = createSlice({
   name: "signupInfo",
   initialState: {
+    loading: false,
+    isEmailAvailable: false,
     speakLanguage: "Persian",
     targetLanguage: "American English",
     motivation: "Other",
@@ -34,6 +37,16 @@ const slice = createSlice({
     setEmail: (signupInfo, action) => {
       signupInfo.email = action.payload;
     },
+    checkEmailRequested: (signupInfo, action) => {
+      signupInfo.loading = true;
+    },
+    checkEmailReceived: (signupInfo, action) => {
+      signupInfo.loading = false;
+      signupInfo.isEmailAvailable = action.payload.status;
+    },
+    checkEmailFailed: (signupInfo, action) => {
+      signupInfo.loading = false;
+    },
   },
 });
 
@@ -45,6 +58,21 @@ export const {
   setAge,
   setName,
   setEmail,
+  checkEmailRequested,
+  checkEmailReceived,
+  checkEmailFailed,
 } = slice.actions;
 
 export default slice.reducer;
+
+export const checkEmail = (email) =>
+  apiCallBegan({
+    url: "/users/check_email",
+    method: "post",
+    data: {
+      email: email,
+    },
+    onStart: checkEmailRequested.type,
+    onSuccess: checkEmailReceived.type,
+    onError: checkEmailFailed.type,
+  });

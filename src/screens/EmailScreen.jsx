@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
@@ -9,8 +10,11 @@ import Button from "../components/common/Button";
 
 import xMark from "../icons/x-mark.svg";
 import Mail from "../icons/heroicons/Mail";
+import { checkEmail } from "../store/slice/signupInfoSlice";
 
 const EmailScreen = () => {
+  const dispatch = useDispatch();
+  const { signupInfo } = useSelector((state) => state);
   const validationSchema = Yup.object({
     email: Yup.string()
       .matches(
@@ -19,6 +23,11 @@ const EmailScreen = () => {
       )
       .required("Required"),
   });
+  const handleSubmit = async (values) => {
+    console.log(values.email);
+    dispatch(checkEmail(values.email));
+  };
+  console.log(signupInfo);
   return (
     <ColContainer classes="bg-gray-light justify-start relative items-center">
       <BackButton classes="absolute top-5 left-5" />
@@ -31,6 +40,7 @@ const EmailScreen = () => {
             email: "",
           }}
           validationSchema={validationSchema}
+          onSubmit={handleSubmit}
         >
           {(formik) => (
             <Form className="w-full text-center">
