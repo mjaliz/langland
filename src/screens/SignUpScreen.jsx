@@ -20,7 +20,7 @@ const SignUpScreen = () => {
           Sign up with email
         </Button>
       </Link>
-      <Button classes="font-semibold bg-white w-[90%] h-12 mx-auto rounded-md shadow-md ring-2 ring-gray mt-4">
+      <Button classes="font-semibold bg-white w-[90%] h-12 mx-auto rounded-md shadow-md ring-2 ring-disabled mt-4">
         More sign up options
       </Button>
       <p className="mt-8 text-md font-semibold mx-auto">

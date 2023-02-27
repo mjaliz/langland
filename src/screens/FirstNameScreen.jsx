@@ -12,7 +12,7 @@ import TextInput from "../components/TextInput";
 import Button from "../components/common/Button";
 
 import xMark from "../icons/x-mark.svg";
-import UserIcon from "../icons/UserIcon";
+import UserIcon from "../icons/heroicons/UserIcon";
 
 const FirstNameScreen = () => {
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const FirstNameScreen = () => {
 
   const validationSchema = Yup.object({
     firstName: Yup.string()
+      .min(3, "Must be 3 characters or more")
       .max(15, "Must be 15 characters or less")
       .required("Required"),
   });

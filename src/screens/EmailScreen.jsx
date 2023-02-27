@@ -8,13 +8,15 @@ import TextInput from "../components/TextInput";
 import Button from "../components/common/Button";
 
 import xMark from "../icons/x-mark.svg";
-import UserIcon from "../icons/UserIcon";
+import Mail from "../icons/heroicons/Mail";
 
 const EmailScreen = () => {
   const validationSchema = Yup.object({
     email: Yup.string()
-      .email()
-      .max(15, "Must be 15 characters or less")
+      .matches(
+        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/,
+        "Please insert a valid email address"
+      )
       .required("Required"),
   });
   return (
@@ -36,7 +38,7 @@ const EmailScreen = () => {
                 label="Email address"
                 name="email"
                 type="text"
-                icon={<UserIcon />}
+                icon={<Mail />}
                 button={
                   <Button
                     onClick={() => formik.resetForm({ values: { email: "" } })}
