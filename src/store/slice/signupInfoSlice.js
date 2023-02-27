@@ -9,7 +9,7 @@ const slice = createSlice({
     pastExperience: "Not much",
     timeGoal: 30,
     age: "18-24",
-    firstName: "",
+    name: "",
     email: "",
   },
   reducers: {
@@ -28,8 +28,8 @@ const slice = createSlice({
     setAge: (signupInfo, action) => {
       signupInfo.age = action.payload;
     },
-    setFirstName: (signupInfo, action) => {
-      signupInfo.firstName = action.payload;
+    setName: (signupInfo, action) => {
+      signupInfo.name = action.payload;
     },
     setEmail: (signupInfo, action) => {
       signupInfo.email = action.payload;
@@ -43,7 +43,7 @@ export const {
   setPastExperience,
   setTimeGoal,
   setAge,
-  setFirstName,
+  setName,
   setEmail,
 } = slice.actions;
 

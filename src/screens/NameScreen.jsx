@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import { setFirstName } from "../store/slice/signupInfoSlice";
+import { setName } from "../store/slice/signupInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import BackButton from "../components/common/BackButton";
@@ -14,19 +14,19 @@ import Button from "../components/common/Button";
 import xMark from "../icons/x-mark.svg";
 import UserIcon from "../icons/heroicons/UserIcon";
 
-const FirstNameScreen = () => {
+const NameScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const validationSchema = Yup.object({
-    firstName: Yup.string()
+    name: Yup.string()
       .min(3, "Must be 3 characters or more")
       .max(15, "Must be 15 characters or less")
       .required("Required"),
   });
 
   const handleSubmit = (values) => {
-    dispatch(setFirstName(values.firstName));
+    dispatch(setName(values.name));
     navigate("/sign_up/email");
     console.log("form submitted", values);
   };
@@ -39,7 +39,7 @@ const FirstNameScreen = () => {
         </h1>
         <Formik
           initialValues={{
-            firstName: "",
+            name: "",
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -48,14 +48,12 @@ const FirstNameScreen = () => {
             <Form className="w-full text-center">
               <TextInput
                 label="Name"
-                name="firstName"
+                name="name"
                 type="text"
                 icon={<UserIcon />}
                 button={
                   <Button
-                    onClick={() =>
-                      formik.resetForm({ values: { firstName: "" } })
-                    }
+                    onClick={() => formik.resetForm({ values: { name: "" } })}
                   >
                     <img src={xMark} alt="x-mark" width={20} />
                   </Button>
@@ -80,4 +78,4 @@ const FirstNameScreen = () => {
   );
 };
 
-export default FirstNameScreen;
+export default NameScreen;
