@@ -4,6 +4,7 @@ import { apiCallBegan } from "../actions/api";
 const slice = createSlice({
   name: "signupInfo",
   initialState: {
+    error: null,
     loading: false,
     isEmailAvailable: false,
     speakLanguage: "Persian",
@@ -46,6 +47,7 @@ const slice = createSlice({
     },
     checkEmailFailed: (signupInfo, action) => {
       signupInfo.loading = false;
+      signupInfo.error = action.payload;
     },
   },
 });

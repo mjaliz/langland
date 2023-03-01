@@ -1,5 +1,7 @@
 import React from "react";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
@@ -13,6 +15,7 @@ import Mail from "../icons/heroicons/Mail";
 import { checkEmail } from "../store/slice/signupInfoSlice";
 
 const EmailScreen = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { signupInfo } = useSelector((state) => state);
   const validationSchema = Yup.object({
@@ -21,13 +24,32 @@ const EmailScreen = () => {
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/,
         "Please insert a valid email address"
       )
-      .required("Required"),
+      .required("Required")
+      .test(
+        "Email must be unique",
+        "User already registered",
+        function (value) {
+          return new Promise((resolve, reject) => {
+            axios
+              .post(`http://localhost:5000/users/check_email`, {
+                email: value,
+              })
+              .then((res) => {
+                resolve(true);
+              })
+              .catch((error) => {
+                if (error.response.data.message) {
+                  resolve(false);
+                }
+              });
+          });
+        }
+      ),
   });
-  const handleSubmit = async (values) => {
-    console.log(values.email);
-    dispatch(checkEmail(values.email));
+
+  const handleSubmit = async (values, { setSubmitting, setFieldError }) => {
+    navigate("/sign_up/password");
   };
-  console.log(signupInfo);
   return (
     <ColContainer classes="bg-gray-light justify-start relative items-center">
       <BackButton classes="absolute top-5 left-5" />
@@ -40,6 +62,7 @@ const EmailScreen = () => {
             email: "",
           }}
           validationSchema={validationSchema}
+          validateOnChange={false}
           onSubmit={handleSubmit}
         >
           {(formik) => (
