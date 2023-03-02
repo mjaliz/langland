@@ -9,6 +9,7 @@ import AgeScreen from "./screens/AgeScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import NameScreen from "./screens/NameScreen";
 import EmailScreen from "./screens/EmailScreen";
+import PasswordScreen from "./screens/PasswordScreen";
 
 import "./index.css";
 
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/sign_up/email",
     element: <EmailScreen />,
+  },
+  {
+    path: "/sign_up/password",
+    element: <PasswordScreen />,
   },
 ]);
 

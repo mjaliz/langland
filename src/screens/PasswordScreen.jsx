@@ -1,10 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-
-import { setName } from "../store/slice/signupInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import BackButton from "../components/common/BackButton";
@@ -12,33 +9,32 @@ import TextInput from "../components/TextInput";
 import Button from "../components/common/Button";
 
 import xMark from "../icons/x-mark.svg";
-import UserIcon from "../icons/heroicons/UserIcon";
+import Mail from "../icons/heroicons/Mail";
 
-const NameScreen = () => {
-  const dispatch = useDispatch();
+const PasswordScreen = () => {
   const navigate = useNavigate();
-
   const validationSchema = Yup.object({
-    name: Yup.string()
-      .min(3, "Must be 3 characters or more")
-      .max(50, "Must be 50 characters or less")
+    password: Yup.string()
+      .matches(
+        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/,
+        "Please insert a valid password address"
+      )
       .required("Required"),
   });
 
-  const handleSubmit = (values) => {
-    dispatch(setName(values.name));
-    navigate("/sign_up/email");
+  const handleSubmit = () => {
+    navigate("/sign_up/password");
   };
   return (
     <ColContainer classes="bg-gray-light justify-start relative items-center">
       <BackButton classes="absolute top-5 left-5" />
       <div className="mt-36 flex flex-col items-center w-[80%]">
         <h1 className="text-center text-4xl font-bold mb-16">
-          What's your first name?
+          Choose a password
         </h1>
         <Formik
           initialValues={{
-            name: "",
+            password: "",
           }}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
@@ -46,20 +42,21 @@ const NameScreen = () => {
           {(formik) => (
             <Form className="w-full text-center">
               <TextInput
-                label="Name"
-                name="name"
+                label="Password"
+                name="password"
                 type="text"
-                icon={<UserIcon />}
+                icon={<Mail />}
                 button={
                   <Button
-                    onClick={() => formik.resetForm({ values: { name: "" } })}
+                    onClick={() =>
+                      formik.resetForm({ values: { password: "" } })
+                    }
                   >
                     <img src={xMark} alt="x-mark" width={20} />
                   </Button>
                 }
               />
               <Button
-                disabled={!formik.isValid}
                 type="submit"
                 classes={`${
                   formik.isValid
@@ -67,7 +64,7 @@ const NameScreen = () => {
                     : "text-gray bg-disabled"
                 } mt-12 w-full h-14 rounded-md font-semibold`}
               >
-                Continue
+                Sign up now
               </Button>
             </Form>
           )}
@@ -77,4 +74,4 @@ const NameScreen = () => {
   );
 };
 
-export default NameScreen;
+export default PasswordScreen;
