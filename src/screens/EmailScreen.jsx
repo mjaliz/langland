@@ -12,6 +12,8 @@ import Button from "../components/common/Button";
 import xMark from "../icons/x-mark.svg";
 import Mail from "../icons/heroicons/Mail";
 
+import config from "../config.json";
+
 const EmailScreen = () => {
   const [emailError, setEmailError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -28,7 +30,7 @@ const EmailScreen = () => {
   const handleSubmit = async (values) => {
     setLoading(true);
     try {
-      const res = await axios.post(`http://localhost:5000/users/check_email`, {
+      const res = await axios.post(`${config.apiUrl}/users/check_email`, {
         email: values.email,
       });
       if (res.data.status) navigate("/sign_up/password");

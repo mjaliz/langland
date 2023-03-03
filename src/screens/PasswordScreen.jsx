@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
@@ -8,28 +8,36 @@ import BackButton from "../components/common/BackButton";
 import TextInput from "../components/TextInput";
 import Button from "../components/common/Button";
 
-import xMark from "../icons/x-mark.svg";
-import Mail from "../icons/heroicons/Mail";
+import eye from "../icons/eye.svg";
+import eyeSlash from "../icons/eye-slash.svg";
+import Lock from "../icons/heroicons/Lock";
 
 const PasswordScreen = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const validationSchema = Yup.object({
     password: Yup.string()
+      .matches(/^[a-zA-Z0-9!@#$%^&*]{7,}$/, "Must have at least 7 characters")
       .matches(
-        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/,
-        "Please insert a valid password address"
+        /^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{1,}$/,
+        "Must have least one special character"
+      )
+      .matches(
+        /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{1,}$/,
+        "Must have at least one number"
       )
       .required("Required"),
   });
 
   const handleSubmit = () => {
-    navigate("/sign_up/password");
+    // navigate("/sign_up/password");
+    console.log("submitted");
   };
   return (
     <ColContainer classes="bg-gray-light justify-start relative items-center">
       <BackButton classes="absolute top-5 left-5" />
       <div className="mt-36 flex flex-col items-center w-[80%]">
-        <h1 className="text-center text-4xl font-bold mb-16">
+        <h1 className="text-center text-3xl font-bold mb-16">
           Choose a password
         </h1>
         <Formik
@@ -44,15 +52,15 @@ const PasswordScreen = () => {
               <TextInput
                 label="Password"
                 name="password"
-                type="text"
-                icon={<Mail />}
+                type={showPassword ? "text" : "password"}
+                icon={<Lock />}
                 button={
-                  <Button
-                    onClick={() =>
-                      formik.resetForm({ values: { password: "" } })
-                    }
-                  >
-                    <img src={xMark} alt="x-mark" width={20} />
+                  <Button onClick={() => setShowPassword(!showPassword)}>
+                    <img
+                      src={showPassword ? eyeSlash : eye}
+                      alt="x-mark"
+                      width={20}
+                    />
                   </Button>
                 }
               />
