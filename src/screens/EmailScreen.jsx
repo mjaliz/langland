@@ -1,8 +1,11 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+
+import { setEmail } from "../store/slice/signupInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import BackButton from "../components/common/BackButton";
@@ -15,6 +18,7 @@ import Mail from "../icons/heroicons/Mail";
 import config from "../config.json";
 
 const EmailScreen = () => {
+  const dispatch = useDispatch();
   const [emailError, setEmailError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -33,7 +37,10 @@ const EmailScreen = () => {
       const res = await axios.post(`${config.apiUrl}/users/check_email`, {
         email: values.email,
       });
-      if (res.data.status) navigate("/sign_up/password");
+      if (res.data.status) {
+        dispatch(setEmail(values.email));
+        navigate("/sign_up/password");
+      }
     } catch (error) {
       setEmailError(error.response.data.message);
     }

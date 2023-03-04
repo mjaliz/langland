@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import _ from "lodash";
+
+import { setPassword } from "../store/slice/signupInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import BackButton from "../components/common/BackButton";
@@ -13,6 +17,9 @@ import eyeSlash from "../icons/eye-slash.svg";
 import Lock from "../icons/heroicons/Lock";
 
 const PasswordScreen = () => {
+  const { signupInfo } = useSelector((state) => state);
+  console.log(signupInfo);
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const validationSchema = Yup.object({
@@ -29,8 +36,21 @@ const PasswordScreen = () => {
       .required("Required"),
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = (values) => {
     // navigate("/sign_up/password");
+    const data = { ...signupInfo, password: values.password };
+    const body = _.pick(data, [
+      "speakLanguage",
+      "targetLanguage",
+      "motivation",
+      "pastExperience",
+      "timeGoal",
+      "age",
+      "name",
+      "email",
+      "password",
+    ]);
+    console.log(body);
     console.log("submitted");
   };
   return (
@@ -52,10 +72,14 @@ const PasswordScreen = () => {
               <TextInput
                 label="Password"
                 name="password"
+                autoComplete="off"
                 type={showPassword ? "text" : "password"}
                 icon={<Lock />}
                 button={
-                  <Button onClick={() => setShowPassword(!showPassword)}>
+                  <Button
+                    onClick={() => setShowPassword(!showPassword)}
+                    type="button"
+                  >
                     <img
                       src={showPassword ? eyeSlash : eye}
                       alt="x-mark"

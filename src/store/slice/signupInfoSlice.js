@@ -8,35 +8,42 @@ const slice = createSlice({
     loading: false,
     isEmailAvailable: false,
     speakLanguage: "Persian",
-    targetLanguage: "American English",
-    motivation: "Other",
-    pastExperience: "Not much",
-    timeGoal: 30,
-    age: "18-24",
-    name: "",
-    email: "",
+    targetLanguage: localStorage.getItem("targetLanguage"),
+    motivation: localStorage.getItem("motivation"),
+    pastExperience: localStorage.getItem("pastExperience"),
+    timeGoal: localStorage.getItem("timeGoal"),
+    age: localStorage.getItem("age"),
+    name: localStorage.getItem("name"),
+    email: localStorage.getItem("email"),
   },
   reducers: {
     setTargetLanguage: (signupInfo, action) => {
       signupInfo.targetLanguage = action.payload;
+      localStorage.setItem("targetLanguage", action.payload);
     },
     setMotivation: (signupInfo, action) => {
       signupInfo.motivation = action.payload;
+      localStorage.setItem("motivation", action.payload);
     },
     setPastExperience: (signupInfo, action) => {
       signupInfo.pastExperience = action.payload;
+      localStorage.setItem("pastExperience", action.payload);
     },
     setTimeGoal: (signupInfo, action) => {
       signupInfo.timeGoal = action.payload;
+      localStorage.setItem("timeGoal", action.payload);
     },
     setAge: (signupInfo, action) => {
       signupInfo.age = action.payload;
+      localStorage.setItem("age", action.payload);
     },
     setName: (signupInfo, action) => {
       signupInfo.name = action.payload;
+      localStorage.setItem("name", action.payload);
     },
     setEmail: (signupInfo, action) => {
       signupInfo.email = action.payload;
+      localStorage.setItem("email", action.payload);
     },
     checkEmailRequested: (signupInfo, action) => {
       signupInfo.loading = true;
@@ -48,6 +55,9 @@ const slice = createSlice({
     checkEmailFailed: (signupInfo, action) => {
       signupInfo.loading = false;
       signupInfo.error = action.payload;
+    },
+    setPassword: (signupInfo, action) => {
+      signupInfo.password = action.payload;
     },
   },
 });
