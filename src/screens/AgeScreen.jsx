@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { setAge } from "../store/slice/signupInfoSlice";
+import { setAge } from "../store/slice/signUpInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import Header from "../components/common/Header";

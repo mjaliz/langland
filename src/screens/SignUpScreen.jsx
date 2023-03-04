@@ -7,8 +7,8 @@ import BackButton from "../components/common/BackButton";
 import Button from "../components/common/Button";
 
 const SignUpScreen = () => {
-  const { signupInfo } = useSelector((state) => state);
-  console.log(signupInfo);
+  const { signUpInfo } = useSelector((state) => state);
+  console.log(signUpInfo);
   return (
     <ColContainer classes="bg-gray-light justify-center relative">
       <BackButton classes="absolute top-5 left-5" />

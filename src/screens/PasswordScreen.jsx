@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import _ from "lodash";
-
-import { setPassword } from "../store/slice/signupInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import BackButton from "../components/common/BackButton";
@@ -17,9 +15,7 @@ import eyeSlash from "../icons/eye-slash.svg";
 import Lock from "../icons/heroicons/Lock";
 
 const PasswordScreen = () => {
-  const { signupInfo } = useSelector((state) => state);
-  console.log(signupInfo);
-  const dispatch = useDispatch();
+  const { signUpInfo } = useSelector((state) => state);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const validationSchema = Yup.object({
@@ -38,7 +34,7 @@ const PasswordScreen = () => {
 
   const handleSubmit = (values) => {
     // navigate("/sign_up/password");
-    const data = { ...signupInfo, password: values.password };
+    const data = { ...signUpInfo, password: values.password };
     const body = _.pick(data, [
       "speakLanguage",
       "targetLanguage",
@@ -51,7 +47,6 @@ const PasswordScreen = () => {
       "password",
     ]);
     console.log(body);
-    console.log("submitted");
   };
   return (
     <ColContainer classes="bg-gray-light justify-start relative items-center">

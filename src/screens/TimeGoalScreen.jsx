@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { setTimeGoal } from "../store/slice/signupInfoSlice";
+import { setTimeGoal } from "../store/slice/signUpInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import Header from "../components/common/Header";
@@ -22,7 +22,7 @@ const timeGoals = [
 
 const TimeGoalScreen = () => {
   const dispatch = useDispatch();
-  const { targetLanguage } = useSelector((state) => state.signupInfo);
+  const { targetLanguage } = useSelector((state) => state.signUpInfo);
 
   const handleClick = (timeGoal) => {
     dispatch(setTimeGoal(timeGoal));

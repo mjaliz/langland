@@ -1,7 +1,7 @@
 import { combineReducers } from "@reduxjs/toolkit";
 
-import signupInfoReducer from "./slice/signupInfoSlice";
+import signUpInfoReducer from "./slice/signUpInfoSlice";
 
 export default combineReducers({
-  signupInfo: signupInfoReducer,
+  signUpInfo: signUpInfoReducer,
 });

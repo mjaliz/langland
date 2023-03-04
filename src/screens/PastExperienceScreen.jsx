@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import { setPastExperience } from "../store/slice/signupInfoSlice";
+import { setPastExperience } from "../store/slice/signUpInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import Header from "../components/common/Header";
@@ -18,7 +18,7 @@ const pastExperiences = [
 
 const PastExperienceScreen = () => {
   const dispatch = useDispatch();
-  const { targetLanguage } = useSelector((state) => state.signupInfo);
+  const { targetLanguage } = useSelector((state) => state.signUpInfo);
 
   const handleClick = (pastExperience) => {
     dispatch(setPastExperience(pastExperience));

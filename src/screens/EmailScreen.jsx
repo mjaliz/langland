@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
-import { setEmail } from "../store/slice/signupInfoSlice";
+import { setEmail } from "../store/slice/signUpInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import BackButton from "../components/common/BackButton";

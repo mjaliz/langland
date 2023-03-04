@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { setTargetLanguage } from "../store/slice/signupInfoSlice";
+import { setTargetLanguage } from "../store/slice/signUpInfoSlice";
 
 import ColContainer from "../components/common/ColContainer";
 import Header from "../components/common/Header";

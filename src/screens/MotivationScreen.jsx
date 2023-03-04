@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setMotivation } from "../store/slice/signupInfoSlice";
+import { setMotivation } from "../store/slice/signUpInfoSlice";
 
 import Card from "../components/common/Card";
 import ColContainer from "../components/common/ColContainer";
@@ -28,7 +28,7 @@ const motivations = [
 
 const MotivationScreen = () => {
   const dispatch = useDispatch();
-  const { targetLanguage } = useSelector((state) => state.signupInfo);
+  const { targetLanguage } = useSelector((state) => state.signUpInfo);
   const handleClick = (motivation) => {
     dispatch(setMotivation(motivation));
   };
