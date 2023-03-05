@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import jwtDecode from "jwt-decode";
+
 import { apiCallBegan } from "../actions/api";
 
-const token = "access_token";
+const tokenKey = "access_token";
 
 const slice = createSlice({
   name: "signUpInfo",
@@ -16,6 +18,7 @@ const slice = createSlice({
     email: localStorage.getItem("email"),
     loading: false,
     error: null,
+    currentUser: getCurrentUser(),
   },
   reducers: {
     setTargetLanguage: (signUpInfo, action) => {
@@ -54,12 +57,15 @@ const slice = createSlice({
     },
     signUpReceived: (signUpInfo, action) => {
       signUpInfo.loading = false;
-      localStorage.setItem(token, action.payload.data["access_token"]);
+      localStorage.setItem(tokenKey, action.payload.data["access_token"]);
       window.location = "/";
     },
     signUpFailed: (signUpInfo, action) => {
       signUpInfo.loading = false;
       signUpInfo.error = action.payload;
+    },
+    currentUserReceived: (signUpInfo, action) => {
+      signUpInfo.currentUser = action.payload;
     },
   },
 });
@@ -75,6 +81,7 @@ export const {
   signUpRequested,
   signUpReceived,
   signUpFailed,
+  currentUserReceived,
 } = slice.actions;
 
 export default slice.reducer;
@@ -88,3 +95,12 @@ export const signUp = (user) =>
     onSuccess: signUpReceived.type,
     onError: signUpFailed.type,
   });
+
+function getCurrentUser() {
+  try {
+    const jwt = localStorage.getItem(tokenKey);
+    return jwtDecode(jwt);
+  } catch (ex) {
+    return null;
+  }
+}

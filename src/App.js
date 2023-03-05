@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import ChooseLanguageScreen from "./screens/ChooseLanguageScreen";
 import LanguagesListScreen from "./screens/LanguagesListScreen";
@@ -10,56 +10,36 @@ import SignUpScreen from "./screens/SignUpScreen";
 import NameScreen from "./screens/NameScreen";
 import EmailScreen from "./screens/EmailScreen";
 import PasswordScreen from "./screens/PasswordScreen";
+import HomeScreen from "./screens/HomeScreen";
+
+import { PrivateRoute } from "./components/PrivateRoutes";
 
 import "./index.css";
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <ChooseLanguageScreen />,
-  },
-  {
-    path: "/my_languages",
-    element: <LanguagesListScreen />,
-  },
-  {
-    path: "/motivation",
-    element: <MotivationScreen />,
-  },
-  {
-    path: "/past_experience",
-    element: <PastExperienceScreen />,
-  },
-  {
-    path: "/time_goal",
-    element: <TimeGoalScreen />,
-  },
-  {
-    path: "/age",
-    element: <AgeScreen />,
-  },
-  {
-    path: "/sign_up",
-    element: <SignUpScreen />,
-  },
-  {
-    path: "/sign_up/first_name",
-    element: <NameScreen />,
-  },
-  {
-    path: "/sign_up/email",
-    element: <EmailScreen />,
-  },
-  {
-    path: "/sign_up/password",
-    element: <PasswordScreen />,
-  },
-]);
 
 function App() {
   return (
     <div className="bg-white">
-      <RouterProvider router={router} />
+      <Router>
+        <Routes>
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<HomeScreen />} />
+          </Route>
+          <Route exact path="/start" element={<ChooseLanguageScreen />} />
+          <Route exact path="/my_languages" element={<LanguagesListScreen />} />
+          <Route exact path="/motivation" element={<MotivationScreen />} />
+          <Route
+            exact
+            path="/past_experience"
+            element={<PastExperienceScreen />}
+          />
+          <Route path="/time_goal" element={<TimeGoalScreen />} />
+          <Route path="/age" element={<AgeScreen />} />
+          <Route path="/sign_up" element={<SignUpScreen />} />
+          <Route path="/sign_up/first_name" element={<NameScreen />} />
+          <Route path="/sign_up/email" element={<EmailScreen />} />
+          <Route path="/sign_up/password" element={<PasswordScreen />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
