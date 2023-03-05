@@ -1,4 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { apiCallBegan } from "../actions/api";
+
+const token = "access_token";
 
 const slice = createSlice({
   name: "signUpInfo",
@@ -11,6 +14,8 @@ const slice = createSlice({
     age: localStorage.getItem("age"),
     name: localStorage.getItem("name"),
     email: localStorage.getItem("email"),
+    loading: false,
+    error: null,
   },
   reducers: {
     setTargetLanguage: (signUpInfo, action) => {
@@ -44,6 +49,18 @@ const slice = createSlice({
     setPassword: (signUpInfo, action) => {
       signUpInfo.password = action.payload;
     },
+    signUpRequested: (signUpInfo, action) => {
+      signUpInfo.loading = true;
+    },
+    signUpReceived: (signUpInfo, action) => {
+      signUpInfo.loading = false;
+      localStorage.setItem(token, action.payload.data["access_token"]);
+      window.location = "/";
+    },
+    signUpFailed: (signUpInfo, action) => {
+      signUpInfo.loading = false;
+      signUpInfo.error = action.payload;
+    },
   },
 });
 
@@ -55,9 +72,19 @@ export const {
   setAge,
   setName,
   setEmail,
-  checkEmailRequested,
-  checkEmailReceived,
-  checkEmailFailed,
+  signUpRequested,
+  signUpReceived,
+  signUpFailed,
 } = slice.actions;
 
 export default slice.reducer;
+
+export const signUp = (user) =>
+  apiCallBegan({
+    url: "/users",
+    method: "post",
+    data: user,
+    onStart: signUpRequested.type,
+    onSuccess: signUpReceived.type,
+    onError: signUpFailed.type,
+  });

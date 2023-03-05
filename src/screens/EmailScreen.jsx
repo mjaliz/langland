@@ -11,6 +11,7 @@ import ColContainer from "../components/common/ColContainer";
 import BackButton from "../components/common/BackButton";
 import TextInput from "../components/TextInput";
 import Button from "../components/common/Button";
+import Spinner from "../components/Spinner";
 
 import xMark from "../icons/x-mark.svg";
 import Mail from "../icons/heroicons/Mail";
@@ -87,7 +88,7 @@ const EmailScreen = () => {
 
               <div className="flex justify-center mt-11">
                 {loading ? (
-                  <div className="w-10 h-10 border-primary border-4 border-t-gray-light rounded-full animate-spin"></div>
+                  <Spinner />
                 ) : (
                   <Button
                     disabled={!formik.isValid}

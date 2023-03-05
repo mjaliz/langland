@@ -1,20 +1,24 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import _ from "lodash";
 
+import { signUp } from "../store/slice/signUpInfoSlice";
+
 import ColContainer from "../components/common/ColContainer";
 import BackButton from "../components/common/BackButton";
 import TextInput from "../components/TextInput";
 import Button from "../components/common/Button";
+import Spinner from "../components/Spinner";
 
 import eye from "../icons/eye.svg";
 import eyeSlash from "../icons/eye-slash.svg";
 import Lock from "../icons/heroicons/Lock";
 
 const PasswordScreen = () => {
+  const dispatch = useDispatch();
   const { signUpInfo } = useSelector((state) => state);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -46,7 +50,7 @@ const PasswordScreen = () => {
       "email",
       "password",
     ]);
-    console.log(body);
+    dispatch(signUp(body));
   };
   return (
     <ColContainer classes="bg-gray-light justify-start relative items-center">
@@ -83,16 +87,25 @@ const PasswordScreen = () => {
                   </Button>
                 }
               />
-              <Button
-                type="submit"
-                classes={`${
-                  formik.isValid
-                    ? "text-white bg-primary shadow-md"
-                    : "text-gray bg-disabled"
-                } mt-12 w-full h-14 rounded-md font-semibold`}
-              >
-                Sign up now
-              </Button>
+              {signUpInfo.error && (
+                <p className="text-error text-left mt-1">{signUpInfo.error}</p>
+              )}
+              <div className="flex justify-center mt-11">
+                {signUpInfo.loading ? (
+                  <Spinner />
+                ) : (
+                  <Button
+                    type="submit"
+                    classes={`${
+                      formik.isValid
+                        ? "text-white bg-primary shadow-md"
+                        : "text-gray bg-disabled"
+                    } mt-12 w-full h-14 rounded-md font-semibold`}
+                  >
+                    Sign up now
+                  </Button>
+                )}
+              </div>
             </Form>
           )}
         </Formik>
