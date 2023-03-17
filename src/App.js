@@ -11,6 +11,7 @@ import NameScreen from "./screens/NameScreen";
 import EmailScreen from "./screens/EmailScreen";
 import PasswordScreen from "./screens/PasswordScreen";
 import HomeScreen from "./screens/HomeScreen";
+import VideoScreen from "./screens/VideoScreen";
 
 import { PrivateRoute } from "./components/PrivateRoutes";
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/sign_up/first_name" element={<NameScreen />} />
           <Route path="/sign_up/email" element={<EmailScreen />} />
           <Route path="/sign_up/password" element={<PasswordScreen />} />
+          <Route path="/video" element={<VideoScreen />} />
         </Routes>
       </Router>
     </div>
