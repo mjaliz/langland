@@ -7,8 +7,8 @@ const TextInput = ({ label, ...props }) => {
       <div className="relative z-0 group border-b-2 border-primary flex items-center">
         <label
           htmlFor={props.id || props.name}
-          className={`transition absolute -z-10 px-1 top-3 left-7 text-gray font-bold group-focus-within:-translate-y-5 caret-primary group-focus-within:text-xs group-focus-within:text-primary ${
-            meta.value ? "-translate-y-5 text-gray text-xs" : ""
+          className={`transition absolute -z-10 px-1 top-3 left-7 text-gray font-bold group-focus-within:-translate-y-7 caret-primary group-focus-within:text-xs group-focus-within:text-primary ${
+            meta.value ? "-translate-y-7 text-gray text-xs" : ""
           }`}
         >
           {label}
