@@ -29,6 +29,21 @@ const VideoScreen = () => {
     videoRef.current.currentTime = subTime;
   };
 
+  const renderCurrentSub = () => {
+    return (
+      <div
+        className={`px-3 justify-center items-center w-full md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%] bg-dark-1 text-center`}
+      >
+        <div className="my-2 flex flex-col gap-2">
+          <p className="text-white font-bold">{subs[currentSubId]?.text}</p>
+          <p className="text-gold font-semibold">
+            {subsFa[currentSubId]?.text}
+          </p>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col justify-center items-center overflow-hidden max-h-screen">
       <div className="w-full md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]">
@@ -47,10 +62,7 @@ const VideoScreen = () => {
           />
         </video>
       </div>
-      <div className="flex flex-col gap-2 py-12 px-3 justify-center items-center w-full md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%] bg-dark-1 text-center min-h-[8vh]">
-        <p className="text-white font-bold">{subs[currentSubId]?.text}</p>
-        <p className="text-gold font-semibold">{subsFa[currentSubId]?.text}</p>
-      </div>
+      {renderCurrentSub()}
       <div className="w-full md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%] overflow-y-scroll bg-dark-2">
         {subs.map((sub, index) => (
           <p
